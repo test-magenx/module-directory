@@ -13,7 +13,6 @@ use Magento\Directory\Model\ResourceModel\Country\Collection;
 use Magento\Directory\Model\ResourceModel\Region\CollectionFactory;
 use Magento\Framework\App\Cache\Type\Config;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\Json\Helper\Data as JsonData;
 use Magento\Store\Model\ScopeInterface;
@@ -26,10 +25,8 @@ use Magento\Store\Model\StoreManagerInterface;
  * @since 100.0.2
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class Data extends AbstractHelper
+class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
-    private const STORE_ID = 'store_id';
-
     /**
      * Config value that lists ISO2 country codes which have optional Zip/Postal pre-configured
      */
@@ -426,11 +423,6 @@ class Data extends AbstractHelper
             $scope = [
                 'type' => ScopeInterface::SCOPE_STORE,
                 'value' => $request->getParam(ScopeInterface::SCOPE_STORE),
-            ];
-        } elseif ($request->getParam(self::STORE_ID)) {
-            $scope = [
-                'type' => ScopeInterface::SCOPE_STORE,
-                'value' => $request->getParam(self::STORE_ID),
             ];
         }
 
